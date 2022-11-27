@@ -38,9 +38,14 @@ private static String ToRoman(int digit, String result) throws CalcException {
 
     public static String calc (String input) throws CalcException {
         char doing = ' ';
-        if (input.contains("+")) {
-            doing = '+';
+       if (input.split(" ").length>3){
+           throw new CalcException("Неверный формат ввода - Число1 операция Число2");
         }
+
+           if (input.contains("+")) {
+               doing = '+';
+           }
+
         if (input.contains("-")) {
             doing = '-';
         }
@@ -129,8 +134,12 @@ private static String ToRoman(int digit, String result) throws CalcException {
                a+= array[i];
                 i++;
             }
-            a= Character.getNumericValue(a);
 
+            if (a>10)
+            {
+                throw new CalcException("Неверный формат ввода - число больше 10");
+            }
+            a= Character.getNumericValue(a);
             for (int y = i+1; y < array.length; y++)
             {
                 if (IsRoman(array[y], RomanList))
@@ -142,22 +151,18 @@ private static String ToRoman(int digit, String result) throws CalcException {
                     b += array[y];
                 }
             }
+            if (b>10){
+                throw new CalcException("Неверный формат ввода - число больше 10");
+            }
             b= Character.getNumericValue(b);
 
         }
 
         switch (doing) {
-            case '+':
-                c = a + b;
-                break;
-            case '-':
-                c = a - b;
-                break;
-            case '/':
-                c = a / b;
-                break;
-            case '*':
-                c = a * b;
+            case '+' -> c = a + b;
+            case '-' -> c = a - b;
+            case '/' -> c = a / b;
+            case '*' -> c = a * b;
         }
         if (roman)
         {String result ="";

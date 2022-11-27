@@ -133,7 +133,7 @@ private static String ToRoman(int digit, String result) throws CalcException {
 
             for (int y = i+1; y < array.length; y++)
             {
-                if (IsRoman(array[i], RomanList))
+                if (IsRoman(array[y], RomanList))
                 {
                     throw new CalcException("Неверный формат ввода - арабские и римские цифры");
                 }

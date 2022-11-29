@@ -135,11 +135,12 @@ private static String ToRoman(int digit, String result) throws CalcException {
                 i++;
             }
 
+
+            a= Character.getNumericValue(a);
             if (a>10)
             {
                 throw new CalcException("Неверный формат ввода - число больше 10");
             }
-            a= Character.getNumericValue(a);
             for (int y = i+1; y < array.length; y++)
             {
                 if (IsRoman(array[y], RomanList))
@@ -151,11 +152,11 @@ private static String ToRoman(int digit, String result) throws CalcException {
                     b += array[y];
                 }
             }
+
+            b= Character.getNumericValue(b);
             if (b>10){
                 throw new CalcException("Неверный формат ввода - число больше 10");
             }
-            b= Character.getNumericValue(b);
-
         }
 
         switch (doing) {
